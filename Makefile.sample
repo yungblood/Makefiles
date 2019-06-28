@@ -1,0 +1,15 @@
+#########################################################################
+# Simple makefile for packaging Roku SDK Application
+#
+# Makefile Usage:
+# > make
+# > make install
+# > make build
+# > make launch
+# > make remove
+##########################################################################  
+APPNAME = Roku-SDK-AppName
+VERSION = 0.1
+
+MAKEDIR = ../../Makefiles
+include $(MAKEDIR)/roku-sdk.mk
