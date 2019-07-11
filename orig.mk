@@ -38,7 +38,7 @@ SOURCEREL = ..
 ZIPREL = $(DISTREL)/apps
 PKGREL = $(DISTREL)/packages
 ROKU_DEV = 192.168.0.69
-DEVPASSWORD = sweetpie
+DEVPASSWORD = 1234
 PKG_KEY = `grep -s Password: keys/key.txt | cut -d' ' -f2`
 PKG_TIME = `date +%s`
 V1 = `grep -s major_version manifest | cut -d'=' -f2`
