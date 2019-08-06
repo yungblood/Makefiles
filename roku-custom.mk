@@ -41,5 +41,8 @@ debug:
 
 launch: install
 	@curl -d '' http://$(ROKU_DEV):8060/launch/dev
+	
+home:
+	@curl -d '' http://$(ROKU_DEV):8060/keypress/home
 
 build: inc-build install
