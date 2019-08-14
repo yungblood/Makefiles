@@ -14,7 +14,14 @@ genkey:
 	@echo "*** Key stored in keys/key.txt  ***"
 
 rekey:
-	@echo "Setting Key for $(APPNAME) on host $(ROKU_DEV)"
+	@if [ "$(PREKEY)" ]; \
+	then \
+		echo "Copying $(PREKEY)* files to primary key files..."; \
+		cp keys/$(PREKEY)key.txt keys/key.txt; \
+		cp keys/$(PREKEY)$(APPNAME).pkg keys/$(APPNAME).pkg; \
+		$(eval PKG_KEY := `grep -s Password: keys/key.txt | cut -d' ' -f2`) \
+	fi 
+	@echo "Setting Key for $(PREKEY)$(APPNAME) on host $(ROKU_DEV)"
 	@curl --user $(USERPASS) --digest -s -S -F "mysubmit=Rekey" -F "archive=@keys/$(APPNAME).pkg" -F "passwd=$(PKG_KEY)" http://$(ROKU_DEV)/plugin_inspect | grep "Roku.Message" | sed "s/.*trigger('Set message content', '//" | sed "s/').trigger('Render', node);//" ;
 
 inc-build:

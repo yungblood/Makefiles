@@ -31,7 +31,7 @@ $(APPNAME): manifest
 		mkdir $(APPSOURCEDIR)/common; \
 		mkdir $(APPCOMPDIR)/common; \
 		cp -rf --preserve=ownership,timestamps --no-preserve=mode -v $(COMMONREL)/* .; \
-	fi \
+	fi 
 
 # zip .png files without compression
 	@echo "  >> creating application zip $(ZIPREL)/$(APPNAME).$(VERSION).zip"	
