@@ -51,5 +51,20 @@ launch: install
 	
 home:
 	@curl -d '' http://$(ROKU_DEV):8060/keypress/home
+	
+setconfig:
+	@echo "*** Setting config options in manifest ***"
+	@if [ "$(CONFIG_FILE)" ]; \
+	then \
+		awk -F= '{if($$1 == "config_file"){$$2="pkg:/$(CONFIG_FILE).json"}}1' OFS== manifest > manifest.tmp; \
+		mv manifest.tmp manifest; \
+		cat manifest | grep config_file; \
+	fi 
+	@if [ "$(CHANNEL_TOKEN)" ]; \
+	then \
+		awk -F= '{if($$1 == "channel_token"){$$2="pkg:/$(CHANNEL_TOKEN).json"}}1' OFS== manifest > manifest.tmp; \
+		mv manifest.tmp manifest; \
+		cat manifest | grep channel_token; \
+	fi 
 
 build: inc-build install

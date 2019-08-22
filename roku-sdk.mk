@@ -60,7 +60,7 @@ $(APPNAME): manifest
 		cp -f --preserve=ownership,timestamps --no-preserve=mode $(ZIPREL)/$(APPNAME).zip $(DISTDIR)/$(DISTZIP).zip; \
 	fi \
 
-install: $(APPNAME)
+install: setconfig $(APPNAME)
 	@echo "Installing $(APPNAME) Version $(VERSION) to host $(ROKU_DEV)"
 	@echo "Pressing Home on $(ROKU_DEV)"
 	@curl -d '' http://$(ROKU_DEV):8060/keypress/home
