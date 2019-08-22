@@ -46,7 +46,7 @@ debug:
 	@echo "*** Brightscript Debug on host $(ROKU_DEV) ***"
 	telnet $(ROKU_DEV) 8085
 
-launch: install
+launch:
 	@curl -d '' http://$(ROKU_DEV):8060/launch/dev
 	
 home:
