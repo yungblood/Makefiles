@@ -48,5 +48,5 @@ else
 endif
 
 ifndef ZIP_EXCLUDE
-  ZIP_EXCLUDE= -x \*.pkg -x external\* -x keys\* -x \.* -x \*/.\* -x /.svn\* -x out\* -x docs\* -x /.git\* -x \*~ -x Makefile
+  ZIP_EXCLUDE= -x \*.pkg -x exclude\* -x keys\* -x \.* -x \*/.\* -x out\* -x docs\* -x /.git\* -x \*~ -x Makefile
 endif

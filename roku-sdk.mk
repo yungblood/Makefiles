@@ -9,6 +9,7 @@
 include $(MAKEDIR)/roku-config.mk
 include $(MAKEDIR)/roku-art.mk
 include $(MAKEDIR)/roku-custom.mk
+include $(MAKEDIR)/roku-ecp-tests.mk
 
 .PHONY: all $(APPNAME)
 
