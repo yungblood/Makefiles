@@ -29,7 +29,7 @@ ifndef ROKU_DEV
 	ROKU_DEV = 192.168.0.69
 endif
 
-PKG_KEY = `grep -s Password: keys/key.txt | cut -d' ' -f2`
+PKG_KEY = `grep -s Password: exclude/keys/key.txt | cut -d' ' -f2`
 PKG_TIME = `date +%s`
 V1 = `grep -s major_version manifest | cut -d'=' -f2`
 V2 = `grep -s minor_version manifest | cut -d'=' -f2`
@@ -48,5 +48,5 @@ else
 endif
 
 ifndef ZIP_EXCLUDE
-  ZIP_EXCLUDE= -x \*.pkg -x exclude\* -x keys\* -x \.* -x \*/.\* -x out\* -x docs\* -x /.git\* -x \*~ -x Makefile
+  ZIP_EXCLUDE= -x \*.pkg -x exclude\* -x \.* -x \*/.\* -x /.git\* -x \*~ -x Makefile
 endif

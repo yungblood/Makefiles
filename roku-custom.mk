@@ -10,19 +10,19 @@ genkey:
 		mkdir keys; \
 	fi
 	@echo "*** Generate Key on host $(ROKU_DEV) ***"
-	@echo "genkey" | ncat -t $(ROKU_DEV) 8080 -o keys/key.txt 2> /dev/null; echo
-	@echo "*** Key stored in keys/key.txt  ***"
+	@echo "genkey" | ncat -t $(ROKU_DEV) 8080 -o exclude/keys/key.txt 2> /dev/null; echo
+	@echo "*** Key stored in exclude/keys/key.txt  ***"
 
 rekey:
 	@if [ "$(PREKEY)" ]; \
 	then \
 		echo "Copying $(PREKEY)* files to primary key files..."; \
-		cp keys/$(PREKEY)key.txt keys/key.txt; \
-		cp keys/$(PREKEY)$(APPNAME).pkg keys/$(APPNAME).pkg; \
-		$(eval PKG_KEY := `grep -s Password: keys/key.txt | cut -d' ' -f2`) \
+		cp exclude/keys/$(PREKEY)key.txt exclude/keys/key.txt; \
+		cp exclude/keys/$(PREKEY)$(APPNAME).pkg exclude/keys/$(APPNAME).pkg; \
+		$(eval PKG_KEY := `grep -s Password: exclude/keys/key.txt | cut -d' ' -f2`) \
 	fi 
 	@echo "Setting Key for $(PREKEY)$(APPNAME) on host $(ROKU_DEV)"
-	@curl --user $(USERPASS) --digest -s -S -F "mysubmit=Rekey" -F "archive=@keys/$(APPNAME).pkg" -F "passwd=$(PKG_KEY)" http://$(ROKU_DEV)/plugin_inspect | grep "Roku.Message" | sed "s/.*trigger('Set message content', '//" | sed "s/').trigger('Render', node);//" ;
+	@curl --user $(USERPASS) --digest -s -S -F "mysubmit=Rekey" -F "archive=@exclude/keys/$(APPNAME).pkg" -F "passwd=$(PKG_KEY)" http://$(ROKU_DEV)/plugin_inspect | grep "Roku.Message" | sed "s/.*trigger('Set message content', '//" | sed "s/').trigger('Render', node);//" ;
 
 inc-build:
 	@echo "  >> Incrementing Build Number..."	

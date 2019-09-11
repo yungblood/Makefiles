@@ -88,8 +88,8 @@ pkg: install
 	@curl -s -S --user $(USERPASS) --digest "http://$(ROKU_DEV)/plugin_package" | grep "a href" | sed 's/.*href=\"\([^\"]*\)\".*/\1/' | sed 's#pkgs//##' > getpkg.url
 	@if [ -s getpkg.url ];\
 	then \
-		wget -nv --user=rokudev --password=$(ROKU_PASS) -B http://$(ROKU_DEV)/pkgs/ -i getpkg.url -O keys/$(APPNAME).pkg; \
-		cp keys/$(APPNAME).pkg $(PKGREL)/$(APPNAME).$(VERSION).pkg; \
+		wget -nv --user=rokudev --password=$(ROKU_PASS) -B http://$(ROKU_DEV)/pkgs/ -i getpkg.url -O exclude/keys/$(APPNAME).pkg; \
+		cp exclude/keys/$(APPNAME).pkg $(PKGREL)/$(APPNAME).$(VERSION).pkg; \
 		rm getpkg.url; \
 		echo "*** Package $(APPNAME) Version $(VERSION) complete ***"; \
 	else \
