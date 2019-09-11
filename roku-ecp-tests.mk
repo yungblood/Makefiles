@@ -8,7 +8,7 @@ ecp-test: install
 	@if [ "$(TEST)" ]; \
 	then \
 		echo "Starting $(TEST) test on host $(ROKU_DEV)"; \
-		cd ../../yungblood/roku-ecp-tests; \
+		cd exclude/roku-ecp-tests; \
 		./$(TEST) $(ROKU_DEV) dev $(PARMS); \
 	else \
 		echo "Test not selected"; \
